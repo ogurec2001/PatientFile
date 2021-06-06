@@ -1,0 +1,20 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Врач
+
+@{
+    ViewBag.Title = "View";
+}
+
+<div>
+    @Html.HiddenFor(x => x.Код_врача)
+    @Html.HiddenFor(x => x.Код_учреждения_здравоохранения)
+    <p>
+        <label>Абоба</label>
+        @Html.TextBoxFor(x => x.Фамилия_врача)
+        @Html.TextBoxFor(x => x.Имя_врача)
+        @Html.TextBoxFor(x => x.Отчество_врача)
+        @Html.TextBoxFor(x => x.Рабочий_телефон)
+
+    </p>
+    @*<a href="javascript:void(0);" class="remRowPhone"><span class="glyphicon glyphicon glyphicon-trash"></span>Удалить</a>*@
+</div>
+

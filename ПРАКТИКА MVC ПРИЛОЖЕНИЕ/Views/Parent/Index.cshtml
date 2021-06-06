@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Карточка_представителя>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список представителей</h2>
+
+<p>
+    @Html.ActionLink("Добавить представителя", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Фамилия_представителя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Имя_представителя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Отчество_представителя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Серия_и_номер_паспорта)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Место_работы)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Контактный_телефон_представителя)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Фамилия_представителя)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Имя_представителя)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Отчество_представителя)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Серия_и_номер_паспорта)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Место_работы)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Контактный_телефон_представителя)
+            </td>
+            <td>
+
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Код_представителя }) |
+                @Html.ActionLink("Просмотреть", "Details", new { id = item.Код_представителя }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Код_представителя })
+            </td>
+        </tr>
+    }
+
+</table>

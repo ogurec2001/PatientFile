@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Адрес_пациента>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список адресов пациентов</h2>
+
+<p>
+    @Html.ActionLink("Добавить адрес", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Номер_амбулаторной_карты)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.город)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.улица)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дом)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Квартира_комната)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Номер_амбулаторной_карты)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Фамилия)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Имя)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Отчество)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.город)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.улица)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Дом)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Квартира_комната)
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.Код_адреса }) |
+        @Html.ActionLink("Просмотреть", "Details", new { id = item.Код_адреса }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Код_адреса })
+    </td>
+</tr>
+}
+
+</table>

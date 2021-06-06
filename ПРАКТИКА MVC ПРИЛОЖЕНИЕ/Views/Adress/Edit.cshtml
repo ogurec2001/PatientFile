@@ -1,0 +1,71 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Адрес_пациента
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Редактирование адреса пациента</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Код_адреса)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Номер_амбулаторной_карты, "Номер амбулаторной карты", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Номер_амбулаторной_карты, new { htmlAttributes = new { @class = "form-control" } })
+
+                @*@Html.DropDownList("Номер_амбулаторной_карты", ViewBag.Номер_амбулаторной_карты as SelectList, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.Номер_амбулаторной_карты, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.город, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.город, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.город, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.улица, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.улица, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.улица, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Дом, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Дом, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Дом, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Квартира_комната, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Квартира_комната, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Квартира_комната, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <hr />
+                <input type="submit" value="Сохранить изменения" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

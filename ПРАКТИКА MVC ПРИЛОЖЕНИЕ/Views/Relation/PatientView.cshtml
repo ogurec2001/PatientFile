@@ -1,0 +1,22 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Электронная_амбулаторная_карта
+
+@{
+    ViewBag.Title = "PatientView";
+}
+
+<div>
+    @Html.HiddenFor(x => x.Номер_амбулаторной_карты)
+    @Html.HiddenFor(x => x.Пол)
+    @Html.HiddenFor(x => x.Дата_рождения)
+    @Html.HiddenFor(x => x.Номер_СНИЛС)
+    @Html.HiddenFor(x => x.Номер_полиса_ОМС)
+    @Html.HiddenFor(x => x.Серия_и_номер_паспорта)
+    @Html.HiddenFor(x => x.Серия_и_номер_свидетельства_о_рождении_пациента)
+
+    <p>
+        @Html.TextBoxFor(x => x.Фамилия)
+        @Html.TextBoxFor(x => x.Имя)
+        @Html.TextBoxFor(x => x.Отчество)
+    </p>
+</div>
+

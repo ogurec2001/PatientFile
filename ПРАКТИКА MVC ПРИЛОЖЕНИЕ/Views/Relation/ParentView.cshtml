@@ -1,0 +1,19 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Карточка_представителя
+
+@{
+    ViewBag.Title = "ParentView";
+}
+
+<div>
+    @Html.HiddenFor(x => x.Код_представителя)
+    @Html.HiddenFor(x => x.Место_работы)
+    @Html.HiddenFor(x => x.Серия_и_номер_паспорта)
+    @Html.HiddenFor(x => x.Контактный_телефон_представителя)
+    <p>
+        <label>Абоба</label>
+        @Html.TextBoxFor(x => x.Фамилия_представителя)
+        @Html.TextBoxFor(x => x.Имя_представителя)
+        @Html.TextBoxFor(x => x.Отчество_представителя)
+    </p>
+</div>
+

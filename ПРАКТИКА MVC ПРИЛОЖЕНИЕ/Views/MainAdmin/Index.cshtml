@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Index";
+    if (Session["Код"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+
+<h2>Рабочее место администратора</h2>
+
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+
+@using (Html.BeginForm("Index", "PatientFile"))
+{
+    <table>
+        @*<tr>
+                <td style="text-decoration:underline" > Абоба
+                </td>
+            </tr>*@
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="parents" value="Список ЭМК пациентов" />
+            </td>
+            @*<td>
+                    <button type="button" onclick="location.href='@Url.Action("Index", "MainAdmin")'">Представители</button>
+                </td>*@
+        </tr>
+    </table>
+
+}
+
+@using (Html.BeginForm("Index", "Doctor"))
+{
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="adress" value="Список врачей" />
+        </tr>
+    </table>
+
+}
+
+@using (Html.BeginForm("Index", "Parent"))
+{
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="adress" value="Список представителей" />
+        </tr>
+    </table>
+
+}
+
+@using (Html.BeginForm("Index", "Adress"))
+{
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="adress" value="Список адресов пациентов" />
+        </tr>
+    </table>
+
+}
+
+@using (Html.BeginForm("Index", "Relation"))
+{
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="adress" value="Список родственных связей" />
+        </tr>
+    </table>
+
+}
+
+@using (Html.BeginForm("Index", "Report"))
+{
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="report" value="Отчеты" />
+        </tr>
+    </table>
+
+}
+
+<a href="@Url.Action("Logout","Login")">
+    Выйти из аккаунта
+</a>
+

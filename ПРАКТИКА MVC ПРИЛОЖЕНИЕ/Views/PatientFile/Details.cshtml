@@ -1,0 +1,98 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Электронная_амбулаторная_карта
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр ЭМК пациента</h2>
+
+<div>
+   @* <h4>Электронная_амбулаторная_карта</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Фамилия)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Имя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Имя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Отчество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Отчество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_рождения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_рождения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Пол)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Пол)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_полиса_ОМС)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_полиса_ОМС)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_СНИЛС)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_СНИЛС)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Серия_и_номер_паспорта)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Серия_и_номер_паспорта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Серия_и_номер_свидетельства_о_рождении_пациента)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Серия_и_номер_свидетельства_о_рождении_пациента)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Учреждение_здравоохранения.Название_учреждения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Учреждение_здравоохранения.Название_учреждения)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   @* @Html.ActionLink("Редактировать", "Edit", new { id = Model.Номер_амбулаторной_карты }) |*@
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

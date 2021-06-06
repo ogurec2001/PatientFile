@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище EntityModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Адрес пациента">
+          <Key>
+            <PropertyRef Name="Код адреса" />
+          </Key>
+          <Property Name="Код адреса" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер амбулаторной карты" Type="int" Nullable="false" />
+          <Property Name="город" Type="nvarchar" MaxLength="255" />
+          <Property Name="улица" Type="nvarchar" MaxLength="255" />
+          <Property Name="Дом" Type="nvarchar" MaxLength="255" />
+          <Property Name="Квартира/комната" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Врач">
+          <Key>
+            <PropertyRef Name="Код врача" />
+          </Key>
+          <Property Name="Код врача" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код учреждения здравоохранения" Type="int" Nullable="false" />
+          <Property Name="Рабочий телефон" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Фамилия врача" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Имя врача" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Отчество врача" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Диагнозы за осмотр">
+          <Key>
+            <PropertyRef Name="Код диагноза" />
+          </Key>
+          <Property Name="Код диагноза" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер осмотра" Type="int" Nullable="false" />
+          <Property Name="Диагноз по МКБ-10" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Идентификатор врача">
+          <Key>
+            <PropertyRef Name="Идентификатор врача" />
+          </Key>
+          <Property Name="Идентификатор врача" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код врача" Type="int" Nullable="false" />
+          <Property Name="Код специальности" Type="int" Nullable="false" />
+          <Property Name="Категория" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Карточка представителя">
+          <Key>
+            <PropertyRef Name="Код_представителя" />
+          </Key>
+          <Property Name="Код_представителя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия представителя" Type="nvarchar" MaxLength="255" />
+          <Property Name="Имя представителя" Type="nvarchar" MaxLength="255" />
+          <Property Name="Отчество представителя" Type="nvarchar" MaxLength="255" />
+          <Property Name="Серия и номер паспорта" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Место работы" Type="nvarchar" MaxLength="255" />
+          <Property Name="Контактный телефон представителя" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Логин и пароль">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="255" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Назначения препаратов">
+          <Key>
+            <PropertyRef Name="Код назначения" />
+          </Key>
+          <Property Name="Код назначения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер осмотра" Type="int" Nullable="false" />
+          <Property Name="Назначение по АТХ" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Осмотр пациента">
+          <Key>
+            <PropertyRef Name="Номер осмотра" />
+          </Key>
+          <Property Name="Номер осмотра" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер амбулаторной карты" Type="int" Nullable="false" />
+          <Property Name="Идентификатор врача" Type="int" Nullable="false" />
+          <Property Name="Дата приема" Type="datetime" Nullable="false" />
+          <Property Name="Цель посещения" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Повторный прием" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Родственная связь">
+          <Key>
+            <PropertyRef Name="Код родства, свойства" />
+          </Key>
+          <Property Name="Код родства, свойства" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название родственной связи" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Связь пациента с представителем">
+          <Key>
+            <PropertyRef Name="Код родственной связи" />
+          </Key>
+          <Property Name="Код родственной связи" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер амбулаторной карты пациента" Type="int" Nullable="false" />
+          <Property Name="Код представителя" Type="int" Nullable="false" />
+          <Property Name="Родственная связь" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Специализация врача">
+          <Key>
+            <PropertyRef Name="Код_специальности" />
+          </Key>
+          <Property Name="Код_специальности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Специальность" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Учреждение здравоохранения">
+          <Key>
+            <PropertyRef Name="Код учреждения" />
+          </Key>
+          <Property Name="Код учреждения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название учреждения" Type="nvarchar" MaxLength="255" />
+          <Property Name="Адрес учреждения" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Электронная амбулаторная карта">
+          <Key>
+            <PropertyRef Name="Номер амбулаторной карты" />
+          </Key>
+          <Property Name="Номер амбулаторной карты" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код учреждения здравоохранения" Type="int" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="255" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="255" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="255" />
+          <Property Name="Дата рождения" Type="date" />
+          <Property Name="Пол" Type="nvarchar" MaxLength="255" />
+          <Property Name="Номер полиса ОМС" Type="nvarchar" MaxLength="255" />
+          <Property Name="Номер СНИЛС" Type="nvarchar" MaxLength="255" />
+          <Property Name="Серия и номер паспорта" Type="nvarchar" MaxLength="255" />
+          <Property Name="Серия и номер свидетельства о рождении пациента" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Адрес пациента_Электронная амбулаторная карта">
+          <End Role="Электронная амбулаторная карта" Type="Self.Электронная амбулаторная карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Адрес пациента" Type="Self.Адрес пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная амбулаторная карта">
+              <PropertyRef Name="Номер амбулаторной карты" />
+            </Principal>
+            <Dependent Role="Адрес пациента">
+              <PropertyRef Name="Номер амбулаторной карты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Врач_Учреждение здравоохранения">
+          <End Role="Учреждение здравоохранения" Type="Self.Учреждение здравоохранения" Multiplicity="1" />
+          <End Role="Врач" Type="Self.Врач" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учреждение здравоохранения">
+              <PropertyRef Name="Код учреждения" />
+            </Principal>
+            <Dependent Role="Врач">
+              <PropertyRef Name="Код учреждения здравоохранения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Диагнозы за осмотр_Осмотр пациента">
+          <End Role="Осмотр пациента" Type="Self.Осмотр пациента" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Диагнозы за осмотр" Type="Self.Диагнозы за осмотр" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Осмотр пациента">
+              <PropertyRef Name="Номер осмотра" />
+            </Principal>
+            <Dependent Role="Диагнозы за осмотр">
+              <PropertyRef Name="Номер осмотра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Идентификатор врача_Врач">
+          <End Role="Врач" Type="Self.Врач" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Идентификатор врача" Type="Self.Идентификатор врача" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Врач">
+              <PropertyRef Name="Код врача" />
+            </Principal>
+            <Dependent Role="Идентификатор врача">
+              <PropertyRef Name="Код врача" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Идентификатор врача_Специализация врача">
+          <End Role="Специализация врача" Type="Self.Специализация врача" Multiplicity="1" />
+          <End Role="Идентификатор врача" Type="Self.Идентификатор врача" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Специализация врача">
+              <PropertyRef Name="Код_специальности" />
+            </Principal>
+            <Dependent Role="Идентификатор врача">
+              <PropertyRef Name="Код специальности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Назначения препаратов_Осмотр пациента">
+          <End Role="Осмотр пациента" Type="Self.Осмотр пациента" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Назначения препаратов" Type="Self.Назначения препаратов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Осмотр пациента">
+              <PropertyRef Name="Номер осмотра" />
+            </Principal>
+            <Dependent Role="Назначения препаратов">
+              <PropertyRef Name="Номер осмотра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осмотр пациента_Идентификатор врача">
+          <End Role="Идентификатор врача" Type="Self.Идентификатор врача" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Осмотр пациента" Type="Self.Осмотр пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Идентификатор врача">
+              <PropertyRef Name="Идентификатор врача" />
+            </Principal>
+            <Dependent Role="Осмотр пациента">
+              <PropertyRef Name="Идентификатор врача" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осмотр пациента_Электронная амбулаторная карта">
+          <End Role="Электронная амбулаторная карта" Type="Self.Электронная амбулаторная карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Осмотр пациента" Type="Self.Осмотр пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная амбулаторная карта">
+              <PropertyRef Name="Номер амбулаторной карты" />
+            </Principal>
+            <Dependent Role="Осмотр пациента">
+              <PropertyRef Name="Номер амбулаторной карты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь пациента с представителем_Карточка представителя">
+          <End Role="Карточка представителя" Type="Self.Карточка представителя" Multiplicity="1" />
+          <End Role="Связь пациента с представителем" Type="Self.Связь пациента с представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Карточка представителя">
+              <PropertyRef Name="Код_представителя" />
+            </Principal>
+            <Dependent Role="Связь пациента с представителем">
+              <PropertyRef Name="Код представителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь пациента с представителем_Родственная связь">
+          <End Role="Родственная связь" Type="Self.Родственная связь" Multiplicity="1" />
+          <End Role="Связь пациента с представителем" Type="Self.Связь пациента с представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Родственная связь">
+              <PropertyRef Name="Код родства, свойства" />
+            </Principal>
+            <Dependent Role="Связь пациента с представителем">
+              <PropertyRef Name="Родственная связь" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь пациента с представителем_Электронная амбулаторная карта">
+          <End Role="Электронная амбулаторная карта" Type="Self.Электронная амбулаторная карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Связь пациента с представителем" Type="Self.Связь пациента с представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная амбулаторная карта">
+              <PropertyRef Name="Номер амбулаторной карты" />
+            </Principal>
+            <Dependent Role="Связь пациента с представителем">
+              <PropertyRef Name="Номер амбулаторной карты пациента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Электронная амбулаторная карта_Учреждение здравоохранения">
+          <End Role="Учреждение здравоохранения" Type="Self.Учреждение здравоохранения" Multiplicity="0..1" />
+          <End Role="Электронная амбулаторная карта" Type="Self.Электронная амбулаторная карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учреждение здравоохранения">
+              <PropertyRef Name="Код учреждения" />
+            </Principal>
+            <Dependent Role="Электронная амбулаторная карта">
+              <PropertyRef Name="Код учреждения здравоохранения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище EntityModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Адрес пациента" EntityType="Self.Адрес пациента" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Врач" EntityType="Self.Врач" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Диагнозы за осмотр" EntityType="Self.Диагнозы за осмотр" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Идентификатор врача" EntityType="Self.Идентификатор врача" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Карточка представителя" EntityType="Self.Карточка представителя" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Логин и пароль" EntityType="Self.Логин и пароль" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Назначения препаратов" EntityType="Self.Назначения препаратов" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Осмотр пациента" EntityType="Self.Осмотр пациента" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Родственная связь" EntityType="Self.Родственная связь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Связь пациента с представителем" EntityType="Self.Связь пациента с представителем" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Специализация врача" EntityType="Self.Специализация врача" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учреждение здравоохранения" EntityType="Self.Учреждение здравоохранения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Электронная амбулаторная карта" EntityType="Self.Электронная амбулаторная карта" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Адрес пациента_Электронная амбулаторная карта" Association="Self.FK_Адрес пациента_Электронная амбулаторная карта">
+            <End Role="Электронная амбулаторная карта" EntitySet="Электронная амбулаторная карта" />
+            <End Role="Адрес пациента" EntitySet="Адрес пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Врач_Учреждение здравоохранения" Association="Self.FK_Врач_Учреждение здравоохранения">
+            <End Role="Учреждение здравоохранения" EntitySet="Учреждение здравоохранения" />
+            <End Role="Врач" EntitySet="Врач" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Диагнозы за осмотр_Осмотр пациента" Association="Self.FK_Диагнозы за осмотр_Осмотр пациента">
+            <End Role="Осмотр пациента" EntitySet="Осмотр пациента" />
+            <End Role="Диагнозы за осмотр" EntitySet="Диагнозы за осмотр" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Идентификатор врача_Врач" Association="Self.FK_Идентификатор врача_Врач">
+            <End Role="Врач" EntitySet="Врач" />
+            <End Role="Идентификатор врача" EntitySet="Идентификатор врача" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Идентификатор врача_Специализация врача" Association="Self.FK_Идентификатор врача_Специализация врача">
+            <End Role="Специализация врача" EntitySet="Специализация врача" />
+            <End Role="Идентификатор врача" EntitySet="Идентификатор врача" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Назначения препаратов_Осмотр пациента" Association="Self.FK_Назначения препаратов_Осмотр пациента">
+            <End Role="Осмотр пациента" EntitySet="Осмотр пациента" />
+            <End Role="Назначения препаратов" EntitySet="Назначения препаратов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осмотр пациента_Идентификатор врача" Association="Self.FK_Осмотр пациента_Идентификатор врача">
+            <End Role="Идентификатор врача" EntitySet="Идентификатор врача" />
+            <End Role="Осмотр пациента" EntitySet="Осмотр пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осмотр пациента_Электронная амбулаторная карта" Association="Self.FK_Осмотр пациента_Электронная амбулаторная карта">
+            <End Role="Электронная амбулаторная карта" EntitySet="Электронная амбулаторная карта" />
+            <End Role="Осмотр пациента" EntitySet="Осмотр пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь пациента с представителем_Карточка представителя" Association="Self.FK_Связь пациента с представителем_Карточка представителя">
+            <End Role="Карточка представителя" EntitySet="Карточка представителя" />
+            <End Role="Связь пациента с представителем" EntitySet="Связь пациента с представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь пациента с представителем_Родственная связь" Association="Self.FK_Связь пациента с представителем_Родственная связь">
+            <End Role="Родственная связь" EntitySet="Родственная связь" />
+            <End Role="Связь пациента с представителем" EntitySet="Связь пациента с представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь пациента с представителем_Электронная амбулаторная карта" Association="Self.FK_Связь пациента с представителем_Электронная амбулаторная карта">
+            <End Role="Электронная амбулаторная карта" EntitySet="Электронная амбулаторная карта" />
+            <End Role="Связь пациента с представителем" EntitySet="Связь пациента с представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Электронная амбулаторная карта_Учреждение здравоохранения" Association="Self.FK_Электронная амбулаторная карта_Учреждение здравоохранения">
+            <End Role="Учреждение здравоохранения" EntitySet="Учреждение здравоохранения" />
+            <End Role="Электронная амбулаторная карта" EntitySet="Электронная амбулаторная карта" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Адрес_пациента">
+          <Key>
+            <PropertyRef Name="Код_адреса" />
+          </Key>
+          <Property Name="Код_адреса" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_амбулаторной_карты" Type="Int32" Nullable="false" />
+          <Property Name="город" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="улица" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Дом" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Квартира_комната" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Электронная_амбулаторная_карта" Relationship="Self.FK_Адрес_пациента_Электронная_амбулаторная_карта" FromRole="Адрес_пациента" ToRole="Электронная_амбулаторная_карта" />
+        </EntityType>
+        <EntityType Name="Врач">
+          <Key>
+            <PropertyRef Name="Код_врача" />
+          </Key>
+          <Property Name="Код_врача" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_учреждения_здравоохранения" Type="Int32" Nullable="false" />
+          <Property Name="Рабочий_телефон" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Фамилия_врача" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя_врача" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество_врача" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Учреждение_здравоохранения" Relationship="Self.FK_Врач_Учреждение_здравоохранения" FromRole="Врач" ToRole="Учреждение_здравоохранения" />
+          <NavigationProperty Name="Идентификатор_врача" Relationship="Self.FK_Идентификатор_врача_Врач" FromRole="Врач" ToRole="Идентификатор_врача" />
+        </EntityType>
+        <EntityType Name="Диагнозы_за_осмотр">
+          <Key>
+            <PropertyRef Name="Код_диагноза" />
+          </Key>
+          <Property Name="Код_диагноза" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_осмотра" Type="Int32" Nullable="false" />
+          <Property Name="Диагноз_по_МКБ_10" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Осмотр_пациента" Relationship="Self.FK_Диагнозы_за_осмотр_Осмотр_пациента" FromRole="Диагнозы_за_осмотр" ToRole="Осмотр_пациента" />
+        </EntityType>
+        <EntityType Name="Идентификатор_врача">
+          <Key>
+            <PropertyRef Name="Идентификатор_врача1" />
+          </Key>
+          <Property Name="Идентификатор_врача1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_врача" Type="Int32" Nullable="false" />
+          <Property Name="Код_специальности" Type="Int32" Nullable="false" />
+          <Property Name="Категория" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Врач" Relationship="Self.FK_Идентификатор_врача_Врач" FromRole="Идентификатор_врача" ToRole="Врач" />
+          <NavigationProperty Name="Специализация_врача" Relationship="Self.FK_Идентификатор_врача_Специализация_врача" FromRole="Идентификатор_врача" ToRole="Специализация_врача" />
+          <NavigationProperty Name="Осмотр_пациента" Relationship="Self.FK_Осмотр_пациента_Идентификатор_врача" FromRole="Идентификатор_врача" ToRole="Осмотр_пациента" />
+        </EntityType>
+        <EntityType Name="Карточка_представителя">
+          <Key>
+            <PropertyRef Name="Код_представителя" />
+          </Key>
+          <Property Name="Код_представителя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия_представителя" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Имя_представителя" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество_представителя" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Серия_и_номер_паспорта" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Место_работы" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Контактный_телефон_представителя" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Связь_пациента_с_представителем" Relationship="Self.FK_Связь_пациента_с_представителем_Карточка_представителя" FromRole="Карточка_представителя" ToRole="Связь_пациента_с_представителем" />
+        </EntityType>
+        <EntityType Name="Логин_и_пароль">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Назначения_препаратов">
+          <Key>
+            <PropertyRef Name="Код_назначения" />
+          </Key>
+          <Property Name="Код_назначения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_осмотра" Type="Int32" Nullable="false" />
+          <Property Name="Назначение_по_АТХ" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Осмотр_пациента" Relationship="Self.FK_Назначения_препаратов_Осмотр_пациента" FromRole="Назначения_препаратов" ToRole="Осмотр_пациента" />
+        </EntityType>
+        <EntityType Name="Осмотр_пациента">
+          <Key>
+            <PropertyRef Name="Номер_осмотра" />
+          </Key>
+          <Property Name="Номер_осмотра" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_амбулаторной_карты" Type="Int32" Nullable="false" />
+          <Property Name="Идентификатор_врача" Type="Int32" Nullable="false" />
+          <Property Name="Дата_приема" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Цель_посещения" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Повторный_прием" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Диагнозы_за_осмотр" Relationship="Self.FK_Диагнозы_за_осмотр_Осмотр_пациента" FromRole="Осмотр_пациента" ToRole="Диагнозы_за_осмотр" />
+          <NavigationProperty Name="Идентификатор_врача1" Relationship="Self.FK_Осмотр_пациента_Идентификатор_врача" FromRole="Осмотр_пациента" ToRole="Идентификатор_врача" />
+          <NavigationProperty Name="Назначения_препаратов" Relationship="Self.FK_Назначения_препаратов_Осмотр_пациента" FromRole="Осмотр_пациента" ToRole="Назначения_препаратов" />
+          <NavigationProperty Name="Электронная_амбулаторная_карта" Relationship="Self.FK_Осмотр_пациента_Электронная_амбулаторная_карта" FromRole="Осмотр_пациента" ToRole="Электронная_амбулаторная_карта" />
+        </EntityType>
+        <EntityType Name="Родственная_связь">
+          <Key>
+            <PropertyRef Name="Код_родства__свойства" />
+          </Key>
+          <Property Name="Код_родства__свойства" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_родственной_связи" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Связь_пациента_с_представителем" Relationship="Self.FK_Связь_пациента_с_представителем_Родственная_связь" FromRole="Родственная_связь" ToRole="Связь_пациента_с_представителем" />
+        </EntityType>
+        <EntityType Name="Связь_пациента_с_представителем">
+          <Key>
+            <PropertyRef Name="Код_родственной_связи" />
+          </Key>
+          <Property Name="Код_родственной_связи" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_амбулаторной_карты_пациента" Type="Int32" Nullable="false" />
+          <Property Name="Код_представителя" Type="Int32" Nullable="false" />
+          <Property Name="Родственная_связь" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Карточка_представителя" Relationship="Self.FK_Связь_пациента_с_представителем_Карточка_представителя" FromRole="Связь_пациента_с_представителем" ToRole="Карточка_представителя" />
+          <NavigationProperty Name="Родственная_связь1" Relationship="Self.FK_Связь_пациента_с_представителем_Родственная_связь" FromRole="Связь_пациента_с_представителем" ToRole="Родственная_связь" />
+          <NavigationProperty Name="Электронная_амбулаторная_карта" Relationship="Self.FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта" FromRole="Связь_пациента_с_представителем" ToRole="Электронная_амбулаторная_карта" />
+        </EntityType>
+        <EntityType Name="Специализация_врача">
+          <Key>
+            <PropertyRef Name="Код_специальности" />
+          </Key>
+          <Property Name="Код_специальности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Специальность" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Идентификатор_врача" Relationship="Self.FK_Идентификатор_врача_Специализация_врача" FromRole="Специализация_врача" ToRole="Идентификатор_врача" />
+        </EntityType>
+        <EntityType Name="Учреждение_здравоохранения">
+          <Key>
+            <PropertyRef Name="Код_учреждения" />
+          </Key>
+          <Property Name="Код_учреждения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_учреждения" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес_учреждения" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Врач" Relationship="Self.FK_Врач_Учреждение_здравоохранения" FromRole="Учреждение_здравоохранения" ToRole="Врач" />
+          <NavigationProperty Name="Электронная_амбулаторная_карта" Relationship="Self.FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения" FromRole="Учреждение_здравоохранения" ToRole="Электронная_амбулаторная_карта" />
+        </EntityType>
+        <EntityType Name="Электронная_амбулаторная_карта">
+          <Key>
+            <PropertyRef Name="Номер_амбулаторной_карты" />
+          </Key>
+          <Property Name="Номер_амбулаторной_карты" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_учреждения_здравоохранения" Type="Int32" />
+          <Property Name="Фамилия" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="Пол" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_полиса_ОМС" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_СНИЛС" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Серия_и_номер_паспорта" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Серия_и_номер_свидетельства_о_рождении_пациента" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Адрес_пациента" Relationship="Self.FK_Адрес_пациента_Электронная_амбулаторная_карта" FromRole="Электронная_амбулаторная_карта" ToRole="Адрес_пациента" />
+          <NavigationProperty Name="Осмотр_пациента" Relationship="Self.FK_Осмотр_пациента_Электронная_амбулаторная_карта" FromRole="Электронная_амбулаторная_карта" ToRole="Осмотр_пациента" />
+          <NavigationProperty Name="Связь_пациента_с_представителем" Relationship="Self.FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта" FromRole="Электронная_амбулаторная_карта" ToRole="Связь_пациента_с_представителем" />
+          <NavigationProperty Name="Учреждение_здравоохранения" Relationship="Self.FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения" FromRole="Электронная_амбулаторная_карта" ToRole="Учреждение_здравоохранения" />
+        </EntityType>
+        <Association Name="FK_Адрес_пациента_Электронная_амбулаторная_карта">
+          <End Role="Электронная_амбулаторная_карта" Type="Self.Электронная_амбулаторная_карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Адрес_пациента" Type="Self.Адрес_пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная_амбулаторная_карта">
+              <PropertyRef Name="Номер_амбулаторной_карты" />
+            </Principal>
+            <Dependent Role="Адрес_пациента">
+              <PropertyRef Name="Номер_амбулаторной_карты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Врач_Учреждение_здравоохранения">
+          <End Role="Учреждение_здравоохранения" Type="Self.Учреждение_здравоохранения" Multiplicity="1" />
+          <End Role="Врач" Type="Self.Врач" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учреждение_здравоохранения">
+              <PropertyRef Name="Код_учреждения" />
+            </Principal>
+            <Dependent Role="Врач">
+              <PropertyRef Name="Код_учреждения_здравоохранения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Идентификатор_врача_Врач">
+          <End Role="Врач" Type="Self.Врач" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Идентификатор_врача" Type="Self.Идентификатор_врача" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Врач">
+              <PropertyRef Name="Код_врача" />
+            </Principal>
+            <Dependent Role="Идентификатор_врача">
+              <PropertyRef Name="Код_врача" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Диагнозы_за_осмотр_Осмотр_пациента">
+          <End Role="Осмотр_пациента" Type="Self.Осмотр_пациента" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Диагнозы_за_осмотр" Type="Self.Диагнозы_за_осмотр" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Осмотр_пациента">
+              <PropertyRef Name="Номер_осмотра" />
+            </Principal>
+            <Dependent Role="Диагнозы_за_осмотр">
+              <PropertyRef Name="Номер_осмотра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Идентификатор_врача_Специализация_врача">
+          <End Role="Специализация_врача" Type="Self.Специализация_врача" Multiplicity="1" />
+          <End Role="Идентификатор_врача" Type="Self.Идентификатор_врача" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Специализация_врача">
+              <PropertyRef Name="Код_специальности" />
+            </Principal>
+            <Dependent Role="Идентификатор_врача">
+              <PropertyRef Name="Код_специальности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осмотр_пациента_Идентификатор_врача">
+          <End Role="Идентификатор_врача" Type="Self.Идентификатор_врача" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Осмотр_пациента" Type="Self.Осмотр_пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Идентификатор_врача">
+              <PropertyRef Name="Идентификатор_врача1" />
+            </Principal>
+            <Dependent Role="Осмотр_пациента">
+              <PropertyRef Name="Идентификатор_врача" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь_пациента_с_представителем_Карточка_представителя">
+          <End Role="Карточка_представителя" Type="Self.Карточка_представителя" Multiplicity="1" />
+          <End Role="Связь_пациента_с_представителем" Type="Self.Связь_пациента_с_представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Карточка_представителя">
+              <PropertyRef Name="Код_представителя" />
+            </Principal>
+            <Dependent Role="Связь_пациента_с_представителем">
+              <PropertyRef Name="Код_представителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Назначения_препаратов_Осмотр_пациента">
+          <End Role="Осмотр_пациента" Type="Self.Осмотр_пациента" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Назначения_препаратов" Type="Self.Назначения_препаратов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Осмотр_пациента">
+              <PropertyRef Name="Номер_осмотра" />
+            </Principal>
+            <Dependent Role="Назначения_препаратов">
+              <PropertyRef Name="Номер_осмотра" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Осмотр_пациента_Электронная_амбулаторная_карта">
+          <End Role="Электронная_амбулаторная_карта" Type="Self.Электронная_амбулаторная_карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Осмотр_пациента" Type="Self.Осмотр_пациента" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная_амбулаторная_карта">
+              <PropertyRef Name="Номер_амбулаторной_карты" />
+            </Principal>
+            <Dependent Role="Осмотр_пациента">
+              <PropertyRef Name="Номер_амбулаторной_карты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь_пациента_с_представителем_Родственная_связь">
+          <End Role="Родственная_связь" Type="Self.Родственная_связь" Multiplicity="1" />
+          <End Role="Связь_пациента_с_представителем" Type="Self.Связь_пациента_с_представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Родственная_связь">
+              <PropertyRef Name="Код_родства__свойства" />
+            </Principal>
+            <Dependent Role="Связь_пациента_с_представителем">
+              <PropertyRef Name="Родственная_связь" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта">
+          <End Role="Электронная_амбулаторная_карта" Type="Self.Электронная_амбулаторная_карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Связь_пациента_с_представителем" Type="Self.Связь_пациента_с_представителем" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Электронная_амбулаторная_карта">
+              <PropertyRef Name="Номер_амбулаторной_карты" />
+            </Principal>
+            <Dependent Role="Связь_пациента_с_представителем">
+              <PropertyRef Name="Номер_амбулаторной_карты_пациента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения">
+          <End Role="Учреждение_здравоохранения" Type="Self.Учреждение_здравоохранения" Multiplicity="0..1" />
+          <End Role="Электронная_амбулаторная_карта" Type="Self.Электронная_амбулаторная_карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учреждение_здравоохранения">
+              <PropertyRef Name="Код_учреждения" />
+            </Principal>
+            <Dependent Role="Электронная_амбулаторная_карта">
+              <PropertyRef Name="Код_учреждения_здравоохранения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Адрес_пациента" EntityType="Self.Адрес_пациента" />
+          <EntitySet Name="Врач" EntityType="Self.Врач" />
+          <EntitySet Name="Диагнозы_за_осмотр" EntityType="Self.Диагнозы_за_осмотр" />
+          <EntitySet Name="Идентификатор_врача" EntityType="Self.Идентификатор_врача" />
+          <EntitySet Name="Карточка_представителя" EntityType="Self.Карточка_представителя" />
+          <EntitySet Name="Логин_и_пароль" EntityType="Self.Логин_и_пароль" />
+          <EntitySet Name="Назначения_препаратов" EntityType="Self.Назначения_препаратов" />
+          <EntitySet Name="Осмотр_пациента" EntityType="Self.Осмотр_пациента" />
+          <EntitySet Name="Родственная_связь" EntityType="Self.Родственная_связь" />
+          <EntitySet Name="Связь_пациента_с_представителем" EntityType="Self.Связь_пациента_с_представителем" />
+          <EntitySet Name="Специализация_врача" EntityType="Self.Специализация_врача" />
+          <EntitySet Name="Учреждение_здравоохранения" EntityType="Self.Учреждение_здравоохранения" />
+          <EntitySet Name="Электронная_амбулаторная_карта" EntityType="Self.Электронная_амбулаторная_карта" />
+          <AssociationSet Name="FK_Адрес_пациента_Электронная_амбулаторная_карта" Association="Self.FK_Адрес_пациента_Электронная_амбулаторная_карта">
+            <End Role="Электронная_амбулаторная_карта" EntitySet="Электронная_амбулаторная_карта" />
+            <End Role="Адрес_пациента" EntitySet="Адрес_пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Врач_Учреждение_здравоохранения" Association="Self.FK_Врач_Учреждение_здравоохранения">
+            <End Role="Учреждение_здравоохранения" EntitySet="Учреждение_здравоохранения" />
+            <End Role="Врач" EntitySet="Врач" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Идентификатор_врача_Врач" Association="Self.FK_Идентификатор_врача_Врач">
+            <End Role="Врач" EntitySet="Врач" />
+            <End Role="Идентификатор_врача" EntitySet="Идентификатор_врача" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Диагнозы_за_осмотр_Осмотр_пациента" Association="Self.FK_Диагнозы_за_осмотр_Осмотр_пациента">
+            <End Role="Осмотр_пациента" EntitySet="Осмотр_пациента" />
+            <End Role="Диагнозы_за_осмотр" EntitySet="Диагнозы_за_осмотр" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Идентификатор_врача_Специализация_врача" Association="Self.FK_Идентификатор_врача_Специализация_врача">
+            <End Role="Специализация_врача" EntitySet="Специализация_врача" />
+            <End Role="Идентификатор_врача" EntitySet="Идентификатор_врача" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осмотр_пациента_Идентификатор_врача" Association="Self.FK_Осмотр_пациента_Идентификатор_врача">
+            <End Role="Идентификатор_врача" EntitySet="Идентификатор_врача" />
+            <End Role="Осмотр_пациента" EntitySet="Осмотр_пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь_пациента_с_представителем_Карточка_представителя" Association="Self.FK_Связь_пациента_с_представителем_Карточка_представителя">
+            <End Role="Карточка_представителя" EntitySet="Карточка_представителя" />
+            <End Role="Связь_пациента_с_представителем" EntitySet="Связь_пациента_с_представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Назначения_препаратов_Осмотр_пациента" Association="Self.FK_Назначения_препаратов_Осмотр_пациента">
+            <End Role="Осмотр_пациента" EntitySet="Осмотр_пациента" />
+            <End Role="Назначения_препаратов" EntitySet="Назначения_препаратов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Осмотр_пациента_Электронная_амбулаторная_карта" Association="Self.FK_Осмотр_пациента_Электронная_амбулаторная_карта">
+            <End Role="Электронная_амбулаторная_карта" EntitySet="Электронная_амбулаторная_карта" />
+            <End Role="Осмотр_пациента" EntitySet="Осмотр_пациента" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь_пациента_с_представителем_Родственная_связь" Association="Self.FK_Связь_пациента_с_представителем_Родственная_связь">
+            <End Role="Родственная_связь" EntitySet="Родственная_связь" />
+            <End Role="Связь_пациента_с_представителем" EntitySet="Связь_пациента_с_представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта" Association="Self.FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта">
+            <End Role="Электронная_амбулаторная_карта" EntitySet="Электронная_амбулаторная_карта" />
+            <End Role="Связь_пациента_с_представителем" EntitySet="Связь_пациента_с_представителем" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения" Association="Self.FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения">
+            <End Role="Учреждение_здравоохранения" EntitySet="Учреждение_здравоохранения" />
+            <End Role="Электронная_амбулаторная_карта" EntitySet="Электронная_амбулаторная_карта" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище EntityModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EntityModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Адрес_пациента">
+            <EntityTypeMapping TypeName="EntityModel.Адрес_пациента">
+              <MappingFragment StoreEntitySet="Адрес пациента">
+                <ScalarProperty Name="Код_адреса" ColumnName="Код адреса" />
+                <ScalarProperty Name="Номер_амбулаторной_карты" ColumnName="Номер амбулаторной карты" />
+                <ScalarProperty Name="город" ColumnName="город" />
+                <ScalarProperty Name="улица" ColumnName="улица" />
+                <ScalarProperty Name="Дом" ColumnName="Дом" />
+                <ScalarProperty Name="Квартира_комната" ColumnName="Квартира/комната" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Врач">
+            <EntityTypeMapping TypeName="EntityModel.Врач">
+              <MappingFragment StoreEntitySet="Врач">
+                <ScalarProperty Name="Код_врача" ColumnName="Код врача" />
+                <ScalarProperty Name="Код_учреждения_здравоохранения" ColumnName="Код учреждения здравоохранения" />
+                <ScalarProperty Name="Рабочий_телефон" ColumnName="Рабочий телефон" />
+                <ScalarProperty Name="Фамилия_врача" ColumnName="Фамилия врача" />
+                <ScalarProperty Name="Имя_врача" ColumnName="Имя врача" />
+                <ScalarProperty Name="Отчество_врача" ColumnName="Отчество врача" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Диагнозы_за_осмотр">
+            <EntityTypeMapping TypeName="EntityModel.Диагнозы_за_осмотр">
+              <MappingFragment StoreEntitySet="Диагнозы за осмотр">
+                <ScalarProperty Name="Код_диагноза" ColumnName="Код диагноза" />
+                <ScalarProperty Name="Номер_осмотра" ColumnName="Номер осмотра" />
+                <ScalarProperty Name="Диагноз_по_МКБ_10" ColumnName="Диагноз по МКБ-10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Идентификатор_врача">
+            <EntityTypeMapping TypeName="EntityModel.Идентификатор_врача">
+              <MappingFragment StoreEntitySet="Идентификатор врача">
+                <ScalarProperty Name="Идентификатор_врача1" ColumnName="Идентификатор врача" />
+                <ScalarProperty Name="Код_врача" ColumnName="Код врача" />
+                <ScalarProperty Name="Код_специальности" ColumnName="Код специальности" />
+                <ScalarProperty Name="Категория" ColumnName="Категория" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Карточка_представителя">
+            <EntityTypeMapping TypeName="EntityModel.Карточка_представителя">
+              <MappingFragment StoreEntitySet="Карточка представителя">
+                <ScalarProperty Name="Код_представителя" ColumnName="Код_представителя" />
+                <ScalarProperty Name="Фамилия_представителя" ColumnName="Фамилия представителя" />
+                <ScalarProperty Name="Имя_представителя" ColumnName="Имя представителя" />
+                <ScalarProperty Name="Отчество_представителя" ColumnName="Отчество представителя" />
+                <ScalarProperty Name="Серия_и_номер_паспорта" ColumnName="Серия и номер паспорта" />
+                <ScalarProperty Name="Место_работы" ColumnName="Место работы" />
+                <ScalarProperty Name="Контактный_телефон_представителя" ColumnName="Контактный телефон представителя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Логин_и_пароль">
+            <EntityTypeMapping TypeName="EntityModel.Логин_и_пароль">
+              <MappingFragment StoreEntitySet="Логин и пароль">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Назначения_препаратов">
+            <EntityTypeMapping TypeName="EntityModel.Назначения_препаратов">
+              <MappingFragment StoreEntitySet="Назначения препаратов">
+                <ScalarProperty Name="Код_назначения" ColumnName="Код назначения" />
+                <ScalarProperty Name="Номер_осмотра" ColumnName="Номер осмотра" />
+                <ScalarProperty Name="Назначение_по_АТХ" ColumnName="Назначение по АТХ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Осмотр_пациента">
+            <EntityTypeMapping TypeName="EntityModel.Осмотр_пациента">
+              <MappingFragment StoreEntitySet="Осмотр пациента">
+                <ScalarProperty Name="Номер_осмотра" ColumnName="Номер осмотра" />
+                <ScalarProperty Name="Номер_амбулаторной_карты" ColumnName="Номер амбулаторной карты" />
+                <ScalarProperty Name="Идентификатор_врача" ColumnName="Идентификатор врача" />
+                <ScalarProperty Name="Дата_приема" ColumnName="Дата приема" />
+                <ScalarProperty Name="Цель_посещения" ColumnName="Цель посещения" />
+                <ScalarProperty Name="Повторный_прием" ColumnName="Повторный прием" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Родственная_связь">
+            <EntityTypeMapping TypeName="EntityModel.Родственная_связь">
+              <MappingFragment StoreEntitySet="Родственная связь">
+                <ScalarProperty Name="Код_родства__свойства" ColumnName="Код родства, свойства" />
+                <ScalarProperty Name="Название_родственной_связи" ColumnName="Название родственной связи" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Связь_пациента_с_представителем">
+            <EntityTypeMapping TypeName="EntityModel.Связь_пациента_с_представителем">
+              <MappingFragment StoreEntitySet="Связь пациента с представителем">
+                <ScalarProperty Name="Код_родственной_связи" ColumnName="Код родственной связи" />
+                <ScalarProperty Name="Номер_амбулаторной_карты_пациента" ColumnName="Номер амбулаторной карты пациента" />
+                <ScalarProperty Name="Код_представителя" ColumnName="Код представителя" />
+                <ScalarProperty Name="Родственная_связь" ColumnName="Родственная связь" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Специализация_врача">
+            <EntityTypeMapping TypeName="EntityModel.Специализация_врача">
+              <MappingFragment StoreEntitySet="Специализация врача">
+                <ScalarProperty Name="Код_специальности" ColumnName="Код_специальности" />
+                <ScalarProperty Name="Специальность" ColumnName="Специальность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учреждение_здравоохранения">
+            <EntityTypeMapping TypeName="EntityModel.Учреждение_здравоохранения">
+              <MappingFragment StoreEntitySet="Учреждение здравоохранения">
+                <ScalarProperty Name="Код_учреждения" ColumnName="Код учреждения" />
+                <ScalarProperty Name="Название_учреждения" ColumnName="Название учреждения" />
+                <ScalarProperty Name="Адрес_учреждения" ColumnName="Адрес учреждения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Электронная_амбулаторная_карта">
+            <EntityTypeMapping TypeName="EntityModel.Электронная_амбулаторная_карта">
+              <MappingFragment StoreEntitySet="Электронная амбулаторная карта">
+                <ScalarProperty Name="Номер_амбулаторной_карты" ColumnName="Номер амбулаторной карты" />
+                <ScalarProperty Name="Код_учреждения_здравоохранения" ColumnName="Код учреждения здравоохранения" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Номер_полиса_ОМС" ColumnName="Номер полиса ОМС" />
+                <ScalarProperty Name="Номер_СНИЛС" ColumnName="Номер СНИЛС" />
+                <ScalarProperty Name="Серия_и_номер_паспорта" ColumnName="Серия и номер паспорта" />
+                <ScalarProperty Name="Серия_и_номер_свидетельства_о_рождении_пациента" ColumnName="Серия и номер свидетельства о рождении пациента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

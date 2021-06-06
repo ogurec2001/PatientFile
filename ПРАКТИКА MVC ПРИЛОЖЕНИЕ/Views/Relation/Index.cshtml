@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Связь_пациента_с_представителем>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список родственных связей пациентов и представителей</h2>
+
+<p>
+    @Html.ActionLink("Добавить родственную связь", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Фамилия_представителя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Имя_представителя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Отчество_представителя)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Родственная_связь1.Название_родственной_связи)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Фамилия)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Имя)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Отчество)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Карточка_представителя.Фамилия_представителя)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Карточка_представителя.Имя_представителя)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Карточка_представителя.Отчество_представителя)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Родственная_связь1.Название_родственной_связи)
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.Код_родственной_связи }) |
+        @Html.ActionLink("Просмотреть", "Details", new { id = item.Код_родственной_связи }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Код_родственной_связи })
+    </td>
+</tr>
+}
+
+</table>

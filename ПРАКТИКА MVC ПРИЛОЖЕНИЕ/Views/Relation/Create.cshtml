@@ -1,0 +1,131 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Связь_пациента_с_представителем
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Добавить родственную связь пациента и представителя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Номер_амбулаторной_карты_пациента, "Номер_амбулаторной_карты_пациента", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Номер_амбулаторной_карты_пациента", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Номер_амбулаторной_карты_пациента, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Код_представителя, "Код_представителя", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Код_представителя", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Код_представителя, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Родственная_связь, "Родственная_связь", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Родственная_связь", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Родственная_связь, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Электронная_амбулаторная_карта.Фамилия, "Фамилия пациента", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (ViewData["Фамилия"] != null)
+                {
+                    @Html.EditorFor(model => model.Электронная_амбулаторная_карта.Фамилия, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Электронная_амбулаторная_карта.Номер_амбулаторной_карты, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Электронная_амбулаторная_карта.Имя, "Имя пациента", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                {
+                @Html.EditorFor(model => model.Электронная_амбулаторная_карта.Имя, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Электронная_амбулаторная_карта.Имя, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Электронная_амбулаторная_карта.Отчество, "Отчество пациента", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                {
+                @Html.EditorFor(model => model.Электронная_амбулаторная_карта.Отчество, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Электронная_амбулаторная_карта.Отчество, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Карточка_представителя.Фамилия_представителя, "Фамилия представителя", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                {
+                @Html.EditorFor(model => model.Карточка_представителя.Фамилия_представителя, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Карточка_представителя.Фамилия_представителя, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Карточка_представителя.Имя_представителя, "Имя представителя", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                {
+                @Html.EditorFor(model => model.Карточка_представителя.Имя_представителя, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Карточка_представителя.Имя_представителя, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Карточка_представителя.Отчество_представителя, "Отчество представителя", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                {
+                @Html.EditorFor(model => model.Карточка_представителя.Отчество_представителя, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Карточка_представителя.Отчество_представителя, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.Номер_амбулаторной_карты_пациента, "ФИО пациента", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Номер_амбулаторной_карты_пациента, Model.PatientList, "Выберите элемент")
+            @Html.ValidationMessageFor(model => model.Номер_амбулаторной_карты_пациента, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Код_представителя, "ФИО представителя", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Код_представителя, Model.ParentList, "Выберите элемент")
+            @Html.ValidationMessageFor(model => model.Код_представителя, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @* названия родсветнных связей надо отобразить в виде выпадающего списка, айдишник - "код_родства_свойства" *@
+    <div class="form-group">
+        @Html.LabelFor(model => model.Код_родственной_связи, "Название родственной связи", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Родственная_связь, Model.CategoryList, "Выберите элемент")
+            @Html.ValidationMessageFor(model => model.Код_родственной_связи, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <hr />
+            <input type="submit" value="Добавить" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

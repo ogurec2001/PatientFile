@@ -1,0 +1,13 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Родственная_связь
+
+@{
+    ViewBag.Title = "RelationTypeView";
+}
+<div>
+    @Html.HiddenFor(x => x.Код_родства__свойства)
+
+    <p>
+        @Html.TextBoxFor(x => x.Название_родственной_связи)
+    </p>
+</div>
+

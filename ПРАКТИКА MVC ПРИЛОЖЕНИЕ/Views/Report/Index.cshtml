@@ -1,0 +1,77 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Логин_и_пароль
+@{
+    ViewBag.Title = "Index";
+
+    if (Session["Код"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<h2>Список отчетов</h2>
+@*<body>
+    <ul>
+        <li id="doc">@Html.ActionLink("Статистические отчеты", "Stats", "Report")</li>
+    </ul>
+</body>*@
+
+<div class="navbar-fixed-top" id="navBar">
+
+    <div class="container">
+
+        <div class="navbar-fixed-top">
+            <ul class="navbar-fixed-top">
+                <li id="doc">@Html.ActionLink("Статистические отчеты", "Stats", "Report")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <td>
+            @Html.ActionLink("Список ЭМК пациентов", "PatFiles", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Список врачей", "DocList", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Список представителей", "ParentList", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Список адресов пациентов", "AdressList", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Список родственных связей", "RelationList", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+
+            @Html.ActionLink("Список осмотров", "CheckupList", "Report")
+
+        </td>
+
+    </tr>
+</table>
+
+
+

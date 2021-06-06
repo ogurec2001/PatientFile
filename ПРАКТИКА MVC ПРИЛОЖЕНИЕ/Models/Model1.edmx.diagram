@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe6951e30df84951bf64694c837d3faf" Name="Diagram1">
+        <EntityTypeShape EntityType="EntityModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Адрес_пациента" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Врач" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Диагнозы_за_осмотр" Width="1.5" PointX="9.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Идентификатор_врача" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Карточка_представителя" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Логин_и_пароль" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Назначения_препаратов" Width="1.5" PointX="9.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Осмотр_пациента" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Родственная_связь" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Связь_пациента_с_представителем" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Специализация_врача" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Учреждение_здравоохранения" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModel.Электронная_амбулаторная_карта" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="EntityModel.FK_Адрес_пациента_Электронная_амбулаторная_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Врач_Учреждение_здравоохранения" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Идентификатор_врача_Врач" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Диагнозы_за_осмотр_Осмотр_пациента" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Идентификатор_врача_Специализация_врача" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Осмотр_пациента_Идентификатор_врача" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Связь_пациента_с_представителем_Карточка_представителя" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Назначения_препаратов_Осмотр_пациента" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Осмотр_пациента_Электронная_амбулаторная_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Связь_пациента_с_представителем_Родственная_связь" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Связь_пациента_с_представителем_Электронная_амбулаторная_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModel.FK_Электронная_амбулаторная_карта_Учреждение_здравоохранения" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

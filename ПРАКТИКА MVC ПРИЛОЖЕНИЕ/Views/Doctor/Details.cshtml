@@ -1,0 +1,66 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Идентификатор_врача
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр карточки врача</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Врач.Фамилия_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Врач.Фамилия_врача)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Врач.Имя_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Врач.Имя_врача)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Врач.Отчество_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Врач.Отчество_врача)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Специализация_врача.Специальность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Специализация_врача.Специальность)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Категория)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Категория)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Врач.Рабочий_телефон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Врач.Рабочий_телефон)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Идентификатор_врача1 }) |*@
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

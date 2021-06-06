@@ -1,0 +1,57 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Адрес_пациента
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр адреса пациента</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.город)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.город)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.улица)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.улица)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дом)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дом)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Квартира_комната)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Квартира_комната)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Номер_амбулаторной_карты)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Номер_амбулаторной_карты)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Код_адреса }) |*@
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

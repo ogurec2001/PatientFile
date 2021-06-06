@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Stats";
+}
+
+<h2>Статистические отчеты</h2>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-fixed-top">
+            <ul class="navbar-fixed-top">
+                <li>@Html.ActionLink("Отчеты по спискам", "Index", "Report")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <td>
+            @Html.ActionLink("Количество осмотров проведенных каждым врачом", "CheckupAmount", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Количество осмотров каждого пациента", "PatCheckupNumber", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Самые частые диагнозы", "IllnessCount", "Report")
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Самые назначаемые препараты", "MedsCount", "Report")
+
+        </td>
+
+    </tr>
+</table>

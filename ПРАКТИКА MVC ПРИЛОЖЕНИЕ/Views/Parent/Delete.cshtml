@@ -1,0 +1,73 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Карточка_представителя
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление записи</h2>
+
+<h3>Точно удалить эту запись?</h3>
+<div>
+    <hr />
+    <a href="~/Views/Parent/Delete.cshtml">~/Views/Parent/Delete.cshtml</a>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Фамилия_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Фамилия_представителя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Имя_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Имя_представителя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Отчество_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Отчество_представителя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Серия_и_номер_паспорта)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Серия_и_номер_паспорта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Место_работы)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Место_работы)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Контактный_телефон_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Контактный_телефон_представителя)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

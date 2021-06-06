@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Осмотр_пациента>
+
+@{
+    ViewBag.Title = "Index";
+    var ab  = Model.SelectMany(ms=>ms.Диагнозы_за_осмотр.Select(m=>m.Диагноз_по_МКБ_10));
+    var bb = Model.SelectMany(ms => ms.Назначения_препаратов.Select(m => m.Назначение_по_АТХ));
+
+
+}
+
+<h2>Список осмотров пациентов</h2>
+
+<p>
+    @Html.ActionLink("Добавить осмотр пациента", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Дата_рождения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Пол)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Фамилия_врача)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Имя_врача)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Отчество_врача)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Специализация_врача.Специальность)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_приема)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Цель_посещения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Повторный_прием)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Диагнозы_за_осмотр)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Назначения_препаратов)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Фамилия)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Имя)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Отчество)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Дата_рождения)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Электронная_амбулаторная_карта.Пол)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Идентификатор_врача1.Врач.Фамилия_врача)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Идентификатор_врача1.Врач.Имя_врача)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Идентификатор_врача1.Врач.Отчество_врача)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Идентификатор_врача1.Специализация_врача.Специальность)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Дата_приема)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Цель_посещения)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Повторный_прием)
+    </td>
+    <td>
+
+        @*@foreach (var model in Model)
+        {
+            var table = model.Диагнозы_за_осмотр.Where(x=>x.Номер_осмотра==model.Номер_осмотра).FirstOrDefault();
+            @Html.DisplayFor(z => table.Диагноз_по_МКБ_10)
+        }*@
+
+        @Html.DisplayFor(modelItem => ab)
+    </td>
+    <td>
+
+        @*@foreach (var model in Model)
+        {
+            var item1 = model.Назначения_препаратов;
+            foreach (var subItem in item1)
+            {
+                @Html.DisplayFor(m => subItem.Назначение_по_АТХ);
+
+            }
+        }*@
+        @* @Html.DisplayFor(modelItem => item.Назначения_препаратов)*@
+        @Html.DisplayFor(modelItem => bb)
+
+    </td>
+    <td>
+        @Html.ActionLink("Редактировать", "Edit", new { id = item.Номер_осмотра }) |
+        @Html.ActionLink("Просмотреть", "Details", new { id = item.Номер_осмотра }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_осмотра })
+    </td>
+</tr>
+}
+
+</table>

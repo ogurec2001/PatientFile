@@ -1,0 +1,89 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Логин_и_пароль
+
+@{
+    ViewBag.Title = "Index";
+  
+}
+
+<head>
+<style>
+    #login 
+    {
+        position:absolute;
+        left:40%;
+        top:40%;
+        border:1px solid #ccc;
+        padding: 20px 20px;
+
+    }
+    .field-validation-error 
+    {
+        color:orangered;
+    }
+</style>
+</head>
+<body>
+
+    <div id="login">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <table>
+                <h2>Авторизация</h2>
+                @*<tr>
+                        <td style="text-decoration:underline" > Авторизация
+                        </td>
+                    </tr>*@
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Логин)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Логин)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Логин)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Пароль)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Пароль)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Пароль)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">
+                            @Html.DisplayFor(model=>model.ErrorMsg)
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" name="login" value="Войти" />
+                        <input type="submit" name="clear" value="Очистить" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>

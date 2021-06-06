@@ -1,0 +1,127 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Осмотр_пациента
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр данных осмотра пациента</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Дата_рождения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Дата_рождения)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Пол)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Пол)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Фамилия_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Идентификатор_врача1.Врач.Фамилия_врача)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Имя_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Идентификатор_врача1.Врач.Имя_врача)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Врач.Отчество_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Идентификатор_врача1.Врач.Отчество_врача)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Идентификатор_врача1.Специализация_врача.Специальность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Идентификатор_врача1.Специализация_врача.Специальность)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_приема)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_приема)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цель_посещения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цель_посещения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Повторный_прием)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Повторный_прием)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Диагнозы_за_осмотр)
+        </dt>
+
+        <dd>
+            @for (int i = 0; i < Model.Диагнозы_за_осмотр.Count; i++)
+            {
+                var a = Model.Диагнозы_за_осмотр.Select(m => m.Диагноз_по_МКБ_10);
+                @Html.DisplayFor(model => a)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Назначения_препаратов)
+        </dt>
+
+        <dd>
+            @for (int i = 0; i < Model.Назначения_препаратов.Count; i++)
+            {
+                var a = Model.Назначения_препаратов.Select(m => m.Назначение_по_АТХ);
+                @Html.DisplayFor(model => a)
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

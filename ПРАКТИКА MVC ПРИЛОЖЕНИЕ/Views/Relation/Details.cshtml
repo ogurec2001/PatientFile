@@ -1,0 +1,69 @@
+﻿@model ПРАКТИКА_MVC_ПРИЛОЖЕНИЕ.Models.Связь_пациента_с_представителем
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Просмотр связи пациента и представителя</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Фамилия)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Имя)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Электронная_амбулаторная_карта.Отчество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Фамилия_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Карточка_представителя.Фамилия_представителя)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Имя_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Карточка_представителя.Имя_представителя)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Карточка_представителя.Отчество_представителя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Карточка_представителя.Отчество_представителя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Родственная_связь1.Название_родственной_связи)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Родственная_связь1.Название_родственной_связи)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Код_родственной_связи }) |*@
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>
